@@ -13,13 +13,13 @@
     const container = document.getElementById('root');
       const root = ReactDOM.createRoot(container);
 
-      function Header(props){
-        return (<h1>Belajar react dengan {props.nama} 🙏</h1>);
+      function Header({ nama }){
+        return (<h1>Belajar react dengan {nama ? nama : "Rendra"} 🙏</h1>);
       }
       function HomePage(){
         return (
           <>
-          <Header nama = "Rendra" />
+          <Header />
           <Header nama = "siapa?"/>
           </>
         )
