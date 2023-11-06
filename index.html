@@ -1,44 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Belajar react</title>
+<html>
+
+<body>
+  <div id="root"></div>
+
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-</head>
-<body>
-  <id id="root"></id>
-  <script type="text/babel">
-    const container = document.getElementById('root');
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/jsx">
+      const container = document.getElementById('root');
       const root = ReactDOM.createRoot(container);
 
-      function Header({ nama }){
-        return (<h1>Belajar react dengan {nama ? nama : "Rendra"} 🙏</h1>);
-      }
-      function HomePage(){
-        const siswa = ['Rendra', 'Ijonk', 'Faris']
-        const [likes, setLikes] = React.useState(0);
+      function MyButton({ text, onClick, counter }) {
 
-        function handleClick(){
-          setLikes(likes + 1)
+        const myStyle = (text !== 'Reset!') ? {} : {margin: 20, display: 'block'};
+
+
+        return (
+          <button onClick={onClick} style={myStyle}>
+            {text}
+          </button>
+        );
+      }
+
+      function MyCounter({counter}) {
+        return (
+          <span style={{ margin: 20 }}>{counter}</span>
+        )
+      }
+
+      function HomePage() {
+        const [counter, setCounter] = React.useState(0);
+
+        function increment() {
+          setCounter(counter + 1);
+        }
+
+        function decrement() {
+          setCounter(counter - 1);
+        }
+
+        function reset() {
+          setCounter(0);
         }
 
         return (
-          <>
-          <Header nama="Rendra" />
-            <ul>
-              {
-                siswa.map((siswa) => (
-                 <li key={siswa}>{siswa}</li>
-                 ))
-              }
-            </ul>
-            <button onClick={handleClick}>Like ({likes})</ button>
-          </>
-        )
+          <div>
+            <MyButton text={'-'} onClick={decrement} counter={counter} />
+            <MyCounter counter={counter} />
+            <MyButton text={'+'} onClick={increment} counter={counter} />   
+            <MyButton text={'Reset!'} onClick={reset} counter={counter} />
+          </div>
+        );
       }
+
       root.render(<HomePage />);
-  </script>  
+    </script>
 </body>
+
 </html>
