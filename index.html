@@ -17,10 +17,17 @@
         return (<h1>Belajar react dengan {nama ? nama : "Rendra"} 🙏</h1>);
       }
       function HomePage(){
+        const siswa = ['Rendra', 'Ijonk', 'Faris']
         return (
           <>
-          <Header />
-          <Header nama = "siapa?"/>
+          <Header nama="Rendra" />
+            <ul>
+              {
+                siswa.map((siswa) => (
+                 <li>{siswa}</li>
+                 ))
+              }
+            </ul>
           </>
         )
       }
